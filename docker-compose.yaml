@@ -1,14 +1,12 @@
-version: '3.8'
-
 services:
   db:
     image: mariadb:latest
     restart: always
     environment:
-      MARIADB_DATABASE: luna_db
-      MARIADB_ROOT_PASSWORD: rootpassword
-      MARIADB_USER: user
-      MARIADB_PASSWORD: password
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
       - "3307:3306"
     volumes:
@@ -19,10 +17,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=mysql+pymysql://user:password@db:3306/luna_db
-      - STATIC_API_KEY=luna
+      - DATABASE_URL=${DATABASE_URL}
+      - STATIC_API_KEY=${STATIC_API_KEY}
     depends_on:
       - db
 
 volumes:
   mariadb_data:
+
