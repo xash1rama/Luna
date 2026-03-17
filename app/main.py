@@ -17,7 +17,6 @@ app.include_router(router)
 
 def seed_db():
     time.sleep(10)
-    Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     if db.query(models.Building).first():
         db.close()
